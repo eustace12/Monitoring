@@ -17,11 +17,14 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['nodeexporter:9100']
+        labels:
+          instance: 'local'
 
-  - job_name: 'cadvisor'
-    scrape_interval: 5s
-    static_configs:
-      - targets: ['cadvisor:8080']
+  # - job_name: 'cadvisor'
+  #   scrape_interval: 5s
+  #   static_configs:
+  #     - targets: ['cadvisor:8080']
+
 
   - job_name: 'prometheus'
     scrape_interval: 10s
@@ -33,12 +36,27 @@ scrape_configs:
     honor_labels: true
     static_configs:
       - targets: ['135.181.115.95:9100']
+        labels:
+          instance: 'remote'
 
   - job_name: 'cad-remote'
     scrape_interval: 10s
     honor_labels: true
     static_configs:
       - targets: ['135.181.115.95:8080']
+
+  # - job_name: 'node-remote-dev'
+  #   scrape_interval: 10s
+  #   honor_labels: true
+  #   static_configs:
+  #     - targets: ['95.217.105.228:9100']
+
+  # - job_name: 'cad-remote-dev'
+  #   scrape_interval: 10s
+  #   honor_labels: true
+  #   static_configs:
+  #     - targets: ['95.217.105.228:8080']
+
 
 
 alerting:

@@ -28,6 +28,8 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
       - /cgroup:/cgroup:ro
+      # - /etc/machine-id:/etc/machine-id:ro
+      # - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id:ro
     restart: unless-stopped
     network_mode: host
     labels:

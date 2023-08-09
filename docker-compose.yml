@@ -1,7 +1,7 @@
 version: '2.1'
 
 networks:
-  monitor-net:
+  monitoring:
     driver: bridge
 
 volumes:
@@ -27,7 +27,7 @@ services:
     ports:
       - 9090:9090
     networks:
-      - monitor-net
+      - monitoring
     labels:
       org.label-schema.group: "monitoring"
 
@@ -43,29 +43,29 @@ services:
     expose:
       - 9093
     networks:
-      - monitor-net
+      - monitoring
     labels:
       org.label-schema.group: "monitoring"
 
-  # nodeexporter:
-  #   image: prom/node-exporter:v0.18.1
-  #   container_name: nodeexporter
-  #   volumes:
-  #     - /proc:/host/proc:ro
-  #     - /sys:/host/sys:ro
-  #     - /:/rootfs:ro
-  #   command:
-  #     - '--path.procfs=/host/proc'
-  #     - '--path.rootfs=/rootfs'
-  #     - '--path.sysfs=/host/sys'
-  #     - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
-  #   restart: unless-stopped
-  #   ports:
-  #     - 9100:9100
-  #   networks:
-  #     - monitor-net
-  #   labels:
-  #     org.label-schema.group: "monitoring"
+  nodeexporter:
+    image: prom/node-exporter:v0.18.1
+    container_name: nodeexporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro 
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)'
+    restart: unless-stopped
+    ports:
+      - 9100:9100
+    networks:
+      - monitoring
+    labels:
+      org.label-schema.group: "monitoring"
 
   # cadvisor:
   #   image: gcr.io/google-containers/cadvisor:v0.34.0
@@ -80,7 +80,7 @@ services:
   #   expose:
   #     - 8080
   #   networks:
-  #     - monitor-net
+  #     - monitoring
   #   labels:
   #     org.label-schema.group: "monitoring"
 
@@ -98,6 +98,6 @@ services:
     ports:
       - 3000:3000
     networks:
-      - monitor-net
+      - monitoring
     labels:
       org.label-schema.group: "monitoring"
