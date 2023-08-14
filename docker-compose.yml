@@ -13,6 +13,14 @@ services:
   prometheus:
     image: prom/prometheus:v2.17.1
     container_name: prometheus
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prometheus_dashboard.rule=Host(`prometheus.powerit.dev`)"
+      - "traefik.http.routers.prometheus_dashboard.entrypoints=websecure"
+      - "traefik.http.routers.prometheus_dashboard.tls=true"
+      - "traefik.http.routers.prometheus_dashboard.tls.certresolver=myresolver"
+      - "traefik.http.routers.am-front.middlewares=tlsredirect"
+     
     volumes:
       - ./prometheus:/etc/prometheus
       - prometheus_data:/prometheus
@@ -28,9 +36,6 @@ services:
       - 9090:9090
     networks:
       - monitoring
-    labels:
-      org.label-schema.group: "monitoring"
-
   alertmanager:
     image: prom/alertmanager:v0.20.0
     container_name: alertmanager
