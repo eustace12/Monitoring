@@ -3,6 +3,8 @@ version: '2.1'
 networks:
   monitoring:
     driver: bridge
+  web:
+    external: true
 
 volumes:
     prometheus_data: {}
@@ -48,7 +50,6 @@ services:
     ports:
       - 9093:9093
     networks:
-      - web
       - monitoring
     labels:
       org.label-schema.group: "monitoring"
