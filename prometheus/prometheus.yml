@@ -51,13 +51,34 @@ scrape_configs:
           instance: 'dev'
 
   - job_name: 'cad-remote-dev'
+    scrape_interval: 5m
+    scrape_timeout: 1m
+    honor_labels: true
+    static_configs:
+      - targets: ['95.217.105.228:8083']
+        labels:
+          instance: 'dev'
+    tls_config:
+      insecure_skip_verify: true
+
+
+  - job_name: 'node-old'
     scrape_interval: 10s
     honor_labels: true
     static_configs:
-      - targets: ['95.217.105.228:8080']
+      - targets: ['157.230.122.163:9100']
         labels:
-          instance: 'dev'
+          instance: 'old'
 
+  - job_name: 'cad-old'
+    scrape_interval: 1m
+    honor_labels: true
+    static_configs:
+      - targets: ['157.230.122.163:8085']
+        labels:
+          instance: 'old'
+    tls_config:
+      insecure_skip_verify: true
 
 alerting:
   alertmanagers:
