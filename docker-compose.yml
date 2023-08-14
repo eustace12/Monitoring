@@ -3,6 +3,8 @@ version: '2.1'
 networks:
   web:
     external: true
+  monitoring:
+    external: true
 
 volumes:
     prometheus_data: {}
@@ -36,6 +38,7 @@ services:
       - 9090:9090
     networks:
       - web
+      - monitoring
   alertmanager:
     image: prom/alertmanager:v0.20.0
     container_name: alertmanager
