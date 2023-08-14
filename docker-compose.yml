@@ -1,8 +1,6 @@
 version: '2.1'
 
 networks:
-  monitoring:
-    driver: bridge
   web:
     external: true
 
@@ -37,7 +35,7 @@ services:
     ports:
       - 9090:9090
     networks:
-      - monitoring
+      - web
   alertmanager:
     image: prom/alertmanager:v0.20.0
     container_name: alertmanager
@@ -50,10 +48,8 @@ services:
     ports:
       - 9093:9093
     networks:
-      - monitoring
-    labels:
-      org.label-schema.group: "monitoring"
-
+      - web
+    
   nodeexporter:
     image: prom/node-exporter:v0.18.1
     container_name: nodeexporter
@@ -71,8 +67,6 @@ services:
       - 9100:9100
     networks:
       - monitoring
-    labels:
-      org.label-schema.group: "monitoring"
 
   cadvisor:
     image: gcr.io/google-containers/cadvisor:v0.34.0
@@ -86,9 +80,7 @@ services:
     expose:
       - 8080
     networks:
-      - monitoring
-    labels:
-      org.label-schema.group: "monitoring"
+      - web
 
   grafana:
     image: grafana/grafana:6.7.2
@@ -105,7 +97,7 @@ services:
       - 3000:3000
     networks:
       - web
-      - monitoring
+
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.prometheus_dashboard.rule=Host(`prometheus.powerit.dev`)"
@@ -132,4 +124,4 @@ services:
     volumes:
       - ./data:/data
     networks:
-      - monitoring
+      - web
