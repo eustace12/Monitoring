@@ -17,10 +17,10 @@ services:
     container_name: prometheus
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.grafana_dashboard.rule=Host(`prometheus.powerit.dev`)"
-      - "traefik.http.routers.grafana_dashboard.entrypoints=websecure"
-      - "traefik.http.routers.grafana_dashboard.tls=true"
-      - "traefik.http.routers.grafana_dashboard.tls.certresolver=myresolver"
+      - "traefik.http.routers.prometheus_dashboard.rule=Host(`prometheus.powerit.dev`)"
+      - "traefik.http.routers.prometheus_dashboard.entrypoints=websecure"
+      - "traefik.http.routers.prometheus_dashboard.tls=true"
+      - "traefik.http.routers.prometheus_dashboard.tls.certresolver=myresolver"
       - "traefik.http.routers.am-front.middlewares=tlsredirect"
      
     volumes:
