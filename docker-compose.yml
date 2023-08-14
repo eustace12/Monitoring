@@ -72,22 +72,21 @@ services:
     labels:
       org.label-schema.group: "monitoring"
 
-  # cadvisor:
-  #   image: gcr.io/google-containers/cadvisor:v0.34.0
-  #   container_name: cadvisor
-  #   volumes:
-  #     - /:/rootfs:ro
-  #     - /var/run:/var/run:rw
-  #     - /sys:/sys:ro
-  #     - /var/lib/docker:/var/lib/docker:ro
-  #     #- /cgroup:/cgroup:ro #doesn't work on MacOS only for Linux
-  #   restart: unless-stopped
-  #   expose:
-  #     - 8080
-  #   networks:
-  #     - monitoring
-  #   labels:
-  #     org.label-schema.group: "monitoring"
+  cadvisor:
+    image: gcr.io/google-containers/cadvisor:v0.34.0
+    container_name: cadvisor
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+    restart: unless-stopped
+    expose:
+      - 8080
+    networks:
+      - monitoring
+    labels:
+      org.label-schema.group: "monitoring"
 
   grafana:
     image: grafana/grafana:6.7.2
@@ -105,7 +104,12 @@ services:
     networks:
       - monitoring
     labels:
-      org.label-schema.group: "monitoring"
+      - "traefik.enable=true"
+      - "traefik.http.routers.prometheus_dashboard.rule=Host(`prometheus.powerit.dev`)"
+      - "traefik.http.routers.prometheus_dashboard.entrypoints=websecure"
+      - "traefik.http.routers.prometheus_dashboard.tls=true"
+      - "traefik.http.routers.prometheus_dashboard.tls.certresolver=myresolver"
+      - "traefik.http.routers.am-front.middlewares=tlsredirect"
 
   alertmanager-bot:
     command:
