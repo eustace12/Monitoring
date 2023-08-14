@@ -48,6 +48,7 @@ services:
     ports:
       - 9093:9093
     networks:
+      - web
       - monitoring
     labels:
       org.label-schema.group: "monitoring"
@@ -102,6 +103,7 @@ services:
     ports:
       - 3000:3000
     networks:
+      - web
       - monitoring
     labels:
       - "traefik.enable=true"
