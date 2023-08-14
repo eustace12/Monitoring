@@ -97,7 +97,6 @@ services:
       - 3000:3000
     networks:
       - web
-
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.grafana_dashboard.rule=Host(`grafana.powerit.dev`)"
