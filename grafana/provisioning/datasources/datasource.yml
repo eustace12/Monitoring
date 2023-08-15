@@ -9,6 +9,14 @@ datasources:
     basicAuth: false
     isDefault: true
     editable: true
+  
+  - name: Loki
+    type: loki
+    access: proxy
+    url: http://loki:3100
+    version: 1
+    editable: false
+    isDefault: true
 
   # - name: CustomMetrics
   #   type: prometheus
