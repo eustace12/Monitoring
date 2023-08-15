@@ -137,7 +137,7 @@ services:
     restart: unless-stopped
     command: -config.file=/etc/loki/loki-config.yml
     networks:
-      - loki
+      - web
   promtail:
     image: grafana/promtail:2.4.0
     volumes:
@@ -148,4 +148,4 @@ services:
     restart: unless-stopped
     command: -config.file=/etc/promtail/promtail-config.yml
     networks:
-      - loki
+      - web
