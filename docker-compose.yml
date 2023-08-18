@@ -32,8 +32,8 @@ services:
       - '--storage.tsdb.retention.time=200h'
       - '--web.enable-lifecycle'
     restart: unless-stopped
-    ports:
-      - 9090:9090
+    # ports:
+    #   - 9090:9090
     networks:
       - web
   alertmanager:
@@ -93,8 +93,8 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD}
       - GF_USERS_ALLOW_SIGN_UP=false
     restart: unless-stopped
-    ports:
-      - 3000:3000
+    # ports:
+    #   - 3000:3000
     networks:
       - web
     labels:
@@ -146,3 +146,5 @@ services:
     command: -config.file=/etc/promtail/promtail-config.yml
     networks:
       - web
+
+      
