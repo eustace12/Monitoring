@@ -32,10 +32,15 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
       - /cgroup:/cgroup:ro
     restart: unless-stopped
+    
     ports:
       - 8083:8080
     command:
       - '-port=8083'
     network_mode: host
     labels:
-      org.label-schema.group: "monitoring"
+      - "traefik.enable=true"
+      - "traefik.http.routers.cadvisor_dashboard.rule=Host(`cadvisor.powerit.dev`)"
+      - "traefik.http.routers.cadvisor_dashboard.entrypoints=websecure"
+      - "traefik.http.routers.cadvisor_dashboard.tls=true"
+      - "traefik.http.routers.cadvisor_dashboard.tls.certresolver=myresolver"
