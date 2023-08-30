@@ -74,7 +74,7 @@ scrape_configs:
     scrape_interval: 1m
     honor_labels: true
     static_configs:
-      - targets: ['157.230.122.163:8085']
+      - targets: ['157.230.122.163:8080']
         labels:
           instance: 'old'
     tls_config:
