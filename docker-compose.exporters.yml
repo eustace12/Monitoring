@@ -1,5 +1,8 @@
 version: '2.1'
 
+networks:
+  web:
+    external: true
 services:
 
   nodeexporter:
@@ -40,7 +43,7 @@ services:
     network_mode: host
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.cadvisor_dashboard.rule=Host(`cadvisor.powerit.dev`)"
+      - "traefik.http.routers.cadvisor_dashboard.rule=Host(`  `)"
       - "traefik.http.routers.cadvisor_dashboard.entrypoints=websecure"
       - "traefik.http.routers.cadvisor_dashboard.tls=true"
       - "traefik.http.routers.cadvisor_dashboard.tls.certresolver=myresolver"
