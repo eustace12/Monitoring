@@ -75,10 +75,11 @@ scrape_configs:
     honor_labels: true
     scheme: https
     static_configs:
-      - targets: ['cadvisor.powerit.dev/metrics']
+      - targets: ['cadvisor.powerit.dev']
         labels:
           instance: 'old'
-   
+
+
       
 
 alerting:
