@@ -137,7 +137,6 @@ services:
     container_name: loki
     image: grafana/loki:2.4.0
     volumes:
-      - ./loki:/etc/loki
       - loki-data:/loki
     ports:
       - "3100:3100"
@@ -146,6 +145,7 @@ services:
     networks:
       - web
     logging: *loki-logging  
+ 
   promtail:
     container_name: promtail
     image: grafana/promtail:2.4.0
@@ -158,5 +158,4 @@ services:
     command: -config.file=/etc/promtail/promtail-config.yml
     networks:
       - web
-
       
