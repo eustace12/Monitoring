@@ -143,13 +143,6 @@ services:
       - "3100:3100"
     restart: unless-stopped
     command: -config.file=/etc/loki/loki-config.yml
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.loki_dashboard.rule=Host(`loki.powerit.dev`)"
-      - "traefik.http.routers.loki_dashboard.entrypoints=websecure"
-      - "traefik.http.routers.loki_dashboard.tls=true"
-      - "traefik.http.routers.loki_dashboard.tls.certresolver=myresolver"
-      - "traefik.http.services.loki.loadbalancer.server.port=3100"
     networks:
       - web
     logging: *loki-logging  
