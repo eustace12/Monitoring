@@ -149,6 +149,7 @@ services:
       - "traefik.http.routers.loki_dashboard.entrypoints=websecure"
       - "traefik.http.routers.loki_dashboard.tls=true"
       - "traefik.http.routers.loki_dashboard.tls.certresolver=myresolver"
+      - "traefik.http.services.loki.loadbalancer.server.port=3100"
     networks:
       - web
     logging: *loki-logging  
