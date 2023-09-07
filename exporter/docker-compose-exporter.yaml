@@ -1,0 +1,55 @@
+version: '2.1'
+
+services:
+
+  nodeexporter:
+    image: prom/node-exporter:v1.6.0
+    container_name: nodeexporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    restart: unless-stopped
+    network_mode: host
+    labels:
+      org.label-schema.group: "monitoring"
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.47.1
+    container_name: cadvisor
+    privileged: true
+    labels:
+#      - "traefik.http.services.cadvisor.loadbalancer.server.port=8080"
+      - "traefik.enable=true"
+      - "traefik.http.routers.cadvisor.rule=Host(`cadvisor.powerit.dev`)"
+      - "traefik.http.routers.cadvisor.entrypoints=web"
+      - "traefik.http.middlewares.tlsredirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.cadvisor.middlewares=tlsredirect"
+      - "traefik.http.routers.cadvisor-secure.rule=Host(`cadvisor.powerit.dev`)"
+      - "traefik.http.routers.cadvisor-secure.entrypoints=websecure"
+      - "traefik.http.routers.cadvisor-secure.tls.certresolver=myresolver"
+      - "traefik.http.routers.cadvisor-secure.tls=true"
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /cgroup:/cgroup:ro
+    restart: unless-stopped
+    networks:
+      - web
+    ports:
+      - 8080:8080
+    command:
+      - '-port=8080'
+
+networks:
+  web:
+    external: true
