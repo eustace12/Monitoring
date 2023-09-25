@@ -10,39 +10,12 @@ rule_files:
 
 scrape_configs:
 
-  # - job_name: 'nodeexporter'
-  #   scrape_interval: 5s
-  #   static_configs:
-  #     - targets: ['nodeexporter:9100']
-  #       labels:
-  #         instance: 'local'
-
-  # - job_name: 'cadvisor'
-  #   scrape_interval: 5s
-  #   static_configs:
-  #     - targets: ['cadvisor:8080']
-
-
   - job_name: 'prometheus'
     scrape_interval: 10s
     static_configs:
       - targets: ['localhost:9090']
-
-  # - job_name: 'node-remote'
-  #   scrape_interval: 10s
-  #   honor_labels: true
-  #   static_configs:
-  #     - targets: ['135.181.115.95:9100']
-  #       labels:
-  #         instance: 'remote'
-
-  # - job_name: 'cad-remote'
-  #   scrape_interval: 10s
-  #   honor_labels: true
-  #   static_configs:
-  #     - targets: ['135.181.115.95:8080']
-
-  - job_name: 'node-remote-dev'
+      
+  - job_name: 'node-dev'
     scrape_interval: 10s
     honor_labels: true
     static_configs:
@@ -50,7 +23,7 @@ scrape_configs:
         labels:
           instance: 'dev'
 
-  - job_name: 'cad-remote-dev'
+  - job_name: 'cad-dev'
     scrape_interval: 5m
     scrape_timeout: 1m
     honor_labels: true
