@@ -11,4 +11,5 @@ jobs:
       - uses: GoogleCloudPlatform/release-please-action@main
         with:
           release-type: php
-          package-name: asterisk-notation
+          package-name: release
+          token: ${{ secrets.PAT }}
