@@ -1,24 +1,18 @@
-name: release-please
+name: Release
 
+# Run on every commit tag which begins with "v" (e.g., "v0.1.4")
 on:
   push:
-    branches:
-      - main
+    tags:
+      - "v*"
 
-permissions:
-  contents: write
-  pull-requests: write
-
+# Automatically create a GitHub Release, with release details specified (the relevant commits)
 jobs:
-  release-please:
-    runs-on: ubuntu-latest
+  release:
+    name: "Release"
+    runs-on: "ubuntu-latest"
     steps:
-      - name: release-please
-        id: release
-        uses: google-github-actions/release-please-action@v3
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          release-type: simple
-          package-name: release
-          bump-minor-pre-major: true
-          bump-patch-for-minor-pre-major: true
-          token: ${{ secrets.PAT }}
+          repo_token: "${{ secrets.PAT }}"
+          prerelease: false
