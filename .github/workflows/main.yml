@@ -1,18 +1,14 @@
 name: Release
 
-# Run on every commit tag which begins with "v" (e.g., "v0.1.4")
 on:
   push:
-    tags:
-      - "v*"
-
-# Automatically create a GitHub Release, with release details specified (the relevant commits)
+    branches:
+      - main
 jobs:
-  release:
-    name: "Release"
-    runs-on: "ubuntu-latest"
+  release-please:
+    runs-on: ubuntu-latest
     steps:
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - uses: GoogleCloudPlatform/release-please-action@main
         with:
-          repo_token: "${{ secrets.PAT }}"
-          prerelease: false
+          release-type: php
+          package-name: asterisk-notation
