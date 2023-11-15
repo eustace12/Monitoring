@@ -1,24 +1,18 @@
-name: release-please
-
 on:
   push:
     branches:
       - main
-
-permissions:
-  contents: write
-  pull-requests: write
-
+name: Run Release Please
 jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - name: release-please
+      - uses: google-github-actions/release-please-action@v3
         id: release
-        uses: google-github-actions/release-please-action@v3
         with:
-          release-type: simple
-          package-name: release
-          bump-minor-pre-major: true
-          bump-patch-for-minor-pre-major: true
-          token: ${{ secrets.PAT }}
+          command: manifest
+      - run: echo "A release was created."
+        if: ${{ steps.release.outputs.releases_created }}
+      # For root level packages: ${{ steps.release.outputs.package-a--tag_name }}
+      - run: echo "Release ${{ steps.release.outputs['packages/package-a--tag_name'] }} created for package-a."
+        if: ${{ steps.release.outputs['packages/package-a--release_created'] }}
