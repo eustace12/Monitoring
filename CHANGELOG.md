@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.3.0](https://github.com/eustace12/Monitoring/compare/v0.2.0...v0.3.0) (2023-11-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* 1.2.3
+* asdasd
+
+### Features
+
+* 1.2.3 ([094137a](https://github.com/eustace12/Monitoring/commit/094137a35c6721a12cd7a8fc93eebe7de3f4e9dc))
+
+
+### Code Refactoring
+
+* asdasd ([9ecd248](https://github.com/eustace12/Monitoring/commit/9ecd248805c88d75c09eb3c3c4ddeef353300495))
+
 ## [0.2.0](https://github.com/eustace12/Monitoring/compare/v0.1.0...v0.2.0) (2023-11-20)
 
 
