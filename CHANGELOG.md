@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0](https://github.com/eustace12/Monitoring/compare/v0.3.1...v0.4.0) (2023-11-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* adasd
+
+### Features
+
+* adasd ([3c7fa64](https://github.com/eustace12/Monitoring/commit/3c7fa64a04b1daeec9dfc6a39dd4c2f526e90506))
+* sdfsd ([2bffdfa](https://github.com/eustace12/Monitoring/commit/2bffdfad9941d6587372c4eb113d58d0e22d28fd))
+
 ## [0.3.1](https://github.com/eustace12/Monitoring/compare/v0.3.0...v0.3.1) (2023-11-23)
 
 
