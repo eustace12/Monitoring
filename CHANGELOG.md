@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.5.0](https://github.com/eustace12/Monitoring/compare/v0.4.0...v0.5.0) (2023-11-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* major
+
+### Code Refactoring
+
+* major ([0b91c88](https://github.com/eustace12/Monitoring/commit/0b91c88e29570cefff337cf1a1ef98197f4f0a31))
+
 ## [0.4.0](https://github.com/eustace12/Monitoring/compare/v0.3.1...v0.4.0) (2023-11-23)
 
 
