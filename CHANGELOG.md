@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.6.0](https://github.com/eustace12/Monitoring/compare/v0.5.0...v0.6.0) (2023-11-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* adasd
+* adasdas
+
+### Code Refactoring
+
+* adasd ([f0b8e4c](https://github.com/eustace12/Monitoring/commit/f0b8e4c4a22dbb225765575f20450c1a772088b5))
+* adasdas ([d1e3ac6](https://github.com/eustace12/Monitoring/commit/d1e3ac6086f6d8676e24eb355ffac12e19134103))
+
 ## [0.5.0](https://github.com/eustace12/Monitoring/compare/v0.4.0...v0.5.0) (2023-11-23)
 
 
